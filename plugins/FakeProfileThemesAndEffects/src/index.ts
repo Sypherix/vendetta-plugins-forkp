@@ -6,7 +6,7 @@ import {
     patchGuildProfileEditForm,
     patchUseProfileEffectSections,
     patchUseProfileTheme,
-    patchUserProfileEditForm
+    // patchUserProfileEditForm  // disabled to remove builder from profile settings
 } from "@patches";
 import { Settings } from "@ui/pages";
 
@@ -32,17 +32,21 @@ export default {
             patchGetPurchase(),
             patchGetUserProfile(),
             patchGuildProfileEditForm(),
-            ...patchUseProfileEffectSections(),
             patchUseProfileTheme(),
-            patchUserProfileEditForm()
+            patchUseProfileEffectSections()
+            // patchUserProfileEditForm()  // disabled to remove builder from profile settings
         );
+
         updateProfileThemeAndEffect();
     },
+
     onUnload() {
-        patches.forEach(unpatch => {
-            unpatch();
-        });
-        updateProfileThemeAndEffect();
-    },
-    settings: Settings
+        for (const unpatch of patches) {
+            try {
+                unpatch();
+            } catch {}
+        }
+    }
 };
+
+export const settings = Settings;
