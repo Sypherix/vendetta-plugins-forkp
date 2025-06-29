@@ -3,8 +3,8 @@
     "description": "Allows profile theming and the usage of profile effects by hiding the colors and effect ID in your About Me using invisible, zero-width characters",
     "authors": [
         {
-            "name": "ryan",
-            "id": "479403382994632704"
+            "name": "ryan, Azurewrath",
+            "id": "1187141481417408604"
         }
     ],
     "main": "src/index.ts",
